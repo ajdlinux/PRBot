@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import traceback
+
 import json
 import github
 import jinja2
@@ -36,6 +38,7 @@ def poll(repo, msg, status):
             print(" => Comment posted successfully")
         except:
             print(" => Error occurred when posting comment")
+            print("\n".join([" =>  " + line for line in traceback.format_exc().splitlines()]))
 
 def main():
     try:
