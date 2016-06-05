@@ -23,10 +23,11 @@ from settings import GITHUB_TOKEN, MESSAGE_PATH, STATUS_FILE, REPO_NAME
 
 def poll(repo, msg, status):
     pulls = repo.get_pulls(sort='created')
+    threshold = status['pull_req_number']
     for pull in pulls.reversed:
         print("Pull request #{} by @{}: {}".format(pull.number, pull.user.login, pull.title))
-        if pull.number <= status['pull_req_number']:
-            print(" => Lower than threshold ({}), breaking".format(status['pull_req_number']))
+        if pull.number <= threshold:
+            print(" => Lower than threshold ({}), breaking".format(threshold))
             break
         comment = msg.render(username=pull.user.login)
         try:
