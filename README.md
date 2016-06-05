@@ -20,6 +20,18 @@ Add a job to your crontab, e.g.:
 This example will run the script every 5 minutes and send all output
 to syslog.
 
+# Message Format
+
+The message should be in Markdown format for display on the GitHub web
+interface.
+
+You can use the placeholder `{{ username }}` to dynamically insert the
+GitHub username of the pull request originator:
+
+	Hi @{{ username }},
+	
+	Thanks for your contribution...
+
 # Copyright
 
 Copyright &copy; 2016 Andrew Donnellan.
