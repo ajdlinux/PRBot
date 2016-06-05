@@ -1,4 +1,10 @@
 *~
+\#*\#
+.\#*
+README.html
+settings.py
+status.json
+message.md
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
