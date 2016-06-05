@@ -23,7 +23,7 @@ import github
 import jinja2
 from settings import GITHUB_TOKEN, MESSAGE_PATH, STATUS_FILE, REPO_NAME
 
-def poll(repo, msg, status):
+def poll(repo, msg, status, username):
     pulls = repo.get_pulls(sort='created')
     threshold = status['pull_req_number']
     for pull in pulls.reversed:
@@ -33,6 +33,12 @@ def poll(repo, msg, status):
             break
         comment = msg.render(username=pull.user.login)
         try:
+            # Double check that we haven't posted on this before...
+            existing_comments = pull.get_issue_comments()
+            if any([comment.user.login == username for comment in existing_comments]):
+                print(" => Existing comment detected. Skipping...")
+                continue
+
             pull.create_issue_comment(comment)
             status['pull_req_number'] = max(status['pull_req_number'], pull.number)
             print(" => Comment posted successfully")
@@ -49,8 +55,10 @@ def main():
     msg = jinja2.Template(open(MESSAGE_PATH).read())
     gh = github.MainClass.Github(GITHUB_TOKEN)
     repo = gh.get_repo(REPO_NAME)
+    username = gh.get_user().login
+    print("Bot is posting as user: {}".format(username))
 
-    poll(repo, msg, status)
+    poll(repo, msg, status, username)
     json.dump(status, open(STATUS_FILE, 'w'))
 
 if __name__ == '__main__':
