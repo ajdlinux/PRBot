@@ -1,4 +1,4 @@
-# KernelPRBot
+# PRBot
 
 # Installation
 
@@ -15,7 +15,7 @@ Set up configuration in settings.py:
 
 Add a job to your crontab, e.g.:
 
-	*/5 * * * * /home/username/KernelPRBot/kernelprbot.py 2>&1 | /usr/bin/logger
+	*/5 * * * * /home/username/PRBot/kernelprbot.py 2>&1 | /usr/bin/logger
 
 This example will run the script every 5 minutes and send all output
 to syslog.

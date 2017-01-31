@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# KernelPRBot - monitor a GitHub repository for new pull requests and post a comment
+# PRBot - monitor a GitHub repository for new pull requests and post a comment
 # Copyright (C) 2016 Andrew Donnellan <andrew@donnellan.id.au>
 #
 # This program is free software: you can redistribute it and/or modify
