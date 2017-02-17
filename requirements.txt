@@ -1,2 +1,2 @@
 Jinja2>=2.8
-PyGithub==1.26.0
+PyGithub==1.31
