@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # PRBot - monitor a GitHub repository for new pull requests and post a comment
-# Copyright (C) 2016 Andrew Donnellan <andrew@donnellan.id.au>
+# Copyright (C) 2016-2017 Andrew Donnellan <andrew@donnellan.id.au>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
