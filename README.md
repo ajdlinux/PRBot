@@ -34,7 +34,7 @@ GitHub username of the pull request originator:
 
 # Copyright
 
-Copyright &copy; 2016 Andrew Donnellan.
+Copyright &copy; 2016-2017 Andrew Donnellan.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
