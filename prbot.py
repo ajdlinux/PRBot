@@ -38,6 +38,10 @@ def poll(repo, msg, status, username):
             break
         comment = msg.render(username=pull.user.login)
         try:
+            if pull.closed_at:
+                print(" => Pull request closed. Skipping...")
+                continue
+
             # Double check that we haven't posted on this before...
             existing_comments = pull.get_issue_comments()
             if any([comment.user.login == username for comment in existing_comments]):
