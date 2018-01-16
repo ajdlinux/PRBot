@@ -23,6 +23,11 @@ import github
 import jinja2
 from settings import GITHUB_TOKEN, MESSAGE_PATH, STATUS_FILE, REPO_NAME
 
+try:
+    from settings import AUTO_CLOSE
+except ImportError:
+    AUTO_CLOSE = False
+
 def poll(repo, msg, status, username):
     pulls = repo.get_pulls(sort='created')
     threshold = status['pull_req_number']
@@ -40,8 +45,12 @@ def poll(repo, msg, status, username):
                 continue
 
             pull.create_issue_comment(comment)
+            if AUTO_CLOSE:
+                pull.edit(state="closed")
+                print(" => Comment posted and Pull Request closed successfully")
+            else:
+                print(" => Comment posted successfully")
             status['pull_req_number'] = max(status['pull_req_number'], pull.number)
-            print(" => Comment posted successfully")
         except:
             print(" => Error occurred when posting comment")
             print("\n".join([" =>  " + line for line in traceback.format_exc().splitlines()]))
