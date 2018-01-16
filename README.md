@@ -23,6 +23,7 @@ Set up configuration in settings.py:
 	MESSAGE_PATH="/path/to/message.md"
 	STATUS_FILE="/path/to/status.json"
 	REPO_NAME="username/repo"
+	AUTO_CLOSE=False
 
 Add a job to your crontab, e.g.:
 
